@@ -2,6 +2,7 @@
 
 <template>
   <div>Index</div>
+  <RouterView />
 </template>
 
 <style lang="less" scoped></style>
