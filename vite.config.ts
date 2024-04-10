@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import { visualizer } from 'rollup-plugin-visualizer'
 // import { readFileSync } from 'node:fs'
 
 // https://vitejs.dev/config/
@@ -26,7 +27,17 @@ export default defineConfig({
       }
     }
   },
-  plugins: [vue(), VueDevTools(), VueSetupExtend()],
+  plugins: [
+    vue(),
+    VueDevTools(),
+    VueSetupExtend(),
+    visualizer({
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+      filename: 'buildStats.html'
+    })
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
