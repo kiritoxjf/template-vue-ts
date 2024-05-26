@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import VueDevTools from 'vite-plugin-vue-devtools'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
+import Inspect from 'vite-plugin-inspect'
 // import { readFileSync } from 'node:fs'
 
 // https://vitejs.dev/config/
@@ -28,6 +29,7 @@ export default defineConfig({
     }
   },
   plugins: [
+    Inspect(),
     vue(),
     VueDevTools(),
     VueSetupExtend(),

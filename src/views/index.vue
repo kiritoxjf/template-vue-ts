@@ -1,21 +1,13 @@
 <script setup lang="ts" name="index"></script>
 
 <template>
-  <div class="layout">
+  <div class="layout h-full flex justify-center items-center text-gray-light font-bold text-4xl">
     <span>Vue模版</span>
   </div>
 </template>
 
 <style lang="less" scoped>
 .layout {
-  height: 100%;
-  width: 100%;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  color: #000;
-  font-weight: bold;
+  background-image: radial-gradient(circle at center, #3e69b5, #48505e 20%, #23272e);
 }
 </style>
