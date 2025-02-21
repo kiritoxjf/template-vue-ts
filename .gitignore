@@ -21,7 +21,6 @@ coverage
 .vscode/*
 !.vscode/extensions.json
 .idea
-.history
 *.suo
 *.ntvs*
 *.njsproj
@@ -30,3 +29,4 @@ coverage
 
 *.tsbuildinfo
 buildStats.html
+.history

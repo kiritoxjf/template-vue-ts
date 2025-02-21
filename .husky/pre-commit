@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+#npx --no-install lint-staged
+# npx --no-install prettier --write "**/*.{js,jsx,ts,tsx,json,css,scss,md}"
+# npx --no-install eslint --fix "**/*.{js,jsx,ts,tsx}"
+# npx --no-install stylelint "**/*.{css,scss}" --fix

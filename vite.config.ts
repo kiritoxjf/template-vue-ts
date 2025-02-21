@@ -1,43 +1,44 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import VueDevTools from 'vite-plugin-vue-devtools'
-import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { visualizer } from 'rollup-plugin-visualizer'
-import Inspect from 'vite-plugin-inspect'
-// import { readFileSync } from 'node:fs'
+import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
+import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 
-// https://vitejs.dev/config/
+// https://vite.dev/config/
 export default defineConfig({
   server: {
-    // dev环境端口号
-    port: 8000,
-    // dev环境SSL证书
-    // https: {
-    //   key: readFileSync('证书密钥路径'),
-    //   cert: readFileSync('证书文件路径')
-    // }
-    // 反向代理
+    host: '0.0.0.0',
+    port: 3001,
     proxy: {
       '/api': {
-        target: '目的地址',
+        target: '',
         changeOrigin: true,
-        rewrite: (path) => path, // 地址转换
-        headers: {} // 转发请求头
+        rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   },
   plugins: [
-    Inspect(),
     vue(),
-    VueDevTools(),
-    VueSetupExtend(),
     visualizer({
       open: true,
+      filename: './buildStats.html',
       gzipSize: true,
-      brotliSize: true,
-      filename: 'buildStats.html'
+      brotliSize: true
+    }),
+    vueDevTools(),
+    VueSetupExtend(),
+    Icons(),
+    AutoImport({
+      imports: []
+    }),
+    Components({
+      resolvers: [IconsResolver({ prefix: false, enabledCollections: ['fluent'] })]
     })
   ],
   resolve: {
@@ -47,8 +48,8 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
-      less: {
-        math: 'always'
+      scss: {
+        additionalData: '@use "@/styles/global.scss" as *;'
       }
     }
   },
